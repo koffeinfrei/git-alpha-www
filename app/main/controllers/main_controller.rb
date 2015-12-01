@@ -9,6 +9,19 @@ module Main
       # Add code for when the about view is loaded
     end
 
+    def add_repository
+      page._error = nil
+      page._in_progress = true
+
+      GitTask.fame(page._new_repository).then do |result|
+        page._result = result
+      end.fail do |error|
+        page._page_error = error
+      end.then do
+        page._in_progress = false
+      end
+    end
+
     private
 
     # The main template contains a #template binding that shows another

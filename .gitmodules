@@ -1,0 +1,3 @@
+[submodule "bin/git-claim-sh"]
+	path = bin/git-claim-sh
+	url = git@github.com:koffeinfrei/git-claim-sh.git

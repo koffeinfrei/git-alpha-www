@@ -4,3 +4,19 @@
 <:Body>
   <h1>Home</h1>
 
+<form e-submit="add_repository" role="form">
+  <div class="form-group">
+    <label>Repository clone url</label>
+    <input class="form-control" type="text" value="{{ page._new_repository }}" />
+  </div>
+
+  {{ if page._in_progress }}
+    <p>loading...</p>
+  {{ else }}
+    {{ if page._error }}
+      <p>ERROR: {{ page._error }}</p>
+    {{ else }}
+      <p>{{ page._result }}</p>
+    {{ end }}
+  {{ end }}
+</form>

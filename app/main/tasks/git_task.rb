@@ -9,6 +9,22 @@ class GitTask < Volt::Task
     FileUtils.mkdir_p(tmp_dir)
     system 'git', 'clone', repository, repository_dir
 
-    `bin/git-claim-sh/git-claim.sh -m #{repository_dir}`
+    result = `bin/git-claim-sh/git-claim.sh -m #{repository_dir}`
+    parse_result(result)
+  end
+
+  def parse_result(result)
+    result
+      .lines
+      .map(&:strip)
+      .map { |line| line.split("\t") }
+      .map do |entry|
+        {
+          author: entry[0],
+          lines: entry[1],
+          total_lines: entry[2],
+          percent: entry[3]
+        }
+      end
   end
 end

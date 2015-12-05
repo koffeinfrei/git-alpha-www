@@ -2,38 +2,53 @@
   Home
 
 <:Body>
-  <h1>Home</h1>
 
-<form e-submit="add_repository" role="form">
-  <div class="form-group">
-    <label>Repository clone url</label>
-    <input class="form-control" type="text" value="{{ page._new_repository }}" />
-  </div>
+  <article>
+    <form e-submit="add_repository" role="form">
+      <div class="form-group">
+        <label class="hidden-visually">Repository clone url</label>
+        <input
+          class="form-control"
+          type="text"
+          value="{{ page._new_repository }}"
+          placeholder="Repository clone url"
+          disabled="{{ 'disabled' if page._in_progress }}" />
+        <input
+          type="submit"
+          value="Analyze"
+          class="btn btn-default"
+          disabled="{{ 'disabled' if page._in_progress }}" />
+      </div>
+    </form>
+  </article>
 
-  {{ if page._in_progress }}
-    <p>loading...</p>
-  {{ else }}
-    {{ if page._error }}
-      <p>ERROR: {{ page._error }}</p>
-    {{ else }}
-      <table>
-        <thead>
-          <tr>
-            <th>Author</th>
-            <th>Lines / Total lines</th>
-            <th>Percentage</th>
-          </tr>
-        </thead>
-      {{ page._result.each do |result| }}
-        <tbody>
-          <tr>
-            <td>{{ result._author }}</td>
-            <td>{{ result._lines }} / {{ result._total_lines }}</td>
-            <td>{{ result._percent }}%</td>
-          </tr>
-        </tbody>
+  <article>
+    <img
+      src="{{ asset_url('app/main/assets/images/loading.gif') }}"
+      class="{{ 'hidden' unless page._in_progress }}" />
+
+    {{ unless page._in_progress }}
+      {{ if page._error }}
+        <p>ERROR: {{ page._error }}</p>
+      {{ elsif page._result }}
+        <table>
+          <thead>
+            <tr>
+              <th>Author</th>
+              <th>Lines / Total lines</th>
+              <th>Percentage</th>
+            </tr>
+          </thead>
+        {{ page._result.each do |result| }}
+          <tbody>
+            <tr>
+              <td>{{ result._author }}</td>
+              <td>{{ result._lines }} / {{ result._total_lines }}</td>
+              <td>{{ result._percent }}%</td>
+            </tr>
+          </tbody>
+        {{ end }}
+        </table>
       {{ end }}
-      </table>
     {{ end }}
-  {{ end }}
-</form>
+  </article>

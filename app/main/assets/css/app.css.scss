@@ -1,3 +1,106 @@
+$font-color: #444;
+$main-color: #7dc676;
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Verdana;
+  font-size: 18px;
+  color: $font-color;
+}
+
+header,
+footer {
+  margin: 50px 0;
+}
+
+article {
+  margin: 0 0 40px 0;
+}
+
+h1 {
+  color: $main-color;
+  font-weight: normal;
+}
+
+input {
+  height: 40px;
+  border: 1px solid $main-color;
+  padding: 0 10px;
+  background-color: #fff;
+  font-family: Verdana;
+  font-size: 18px;
+  box-sizing: padding-box;
+
+  &[type='text'] {
+    width: 79%;
+  }
+
+  &[type='submit'] {
+    width: 19%;
+    color: $font-color;
+    cursor: pointer;
+  }
+}
+
+label {
+  display: block;
+}
+
+::-webkit-input-placeholder {
+   color: $font-color;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: $font-color;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: $font-color;
+}
+:-ms-input-placeholder {
+   color: $font-color;
+}
+
+.center-container {
+  text-align: center;
+}
+
 table {
   width: 100%;
+  text-align: left;
+}
+
+th {
+  color: $main-color;
+  font-weight: normal;
+}
+
+a,
+a:visited,
+a:hover,
+a:focus {
+  color: #000;
+  outline: 0;
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.hidden-visually {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.container {
+  max-width: 730px;
+  height: 100%;
+  margin: auto;
+  text-align: center;
 }

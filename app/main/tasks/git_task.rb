@@ -9,7 +9,7 @@ class GitTask < Volt::Task
     FileUtils.mkdir_p(tmp_dir)
     system 'git', 'clone', repository, repository_dir
 
-    result = `bin/git-claim-sh/git-claim.sh -m #{repository_dir}`
+    result = `bin/git-alpha/git-alpha -m #{repository_dir}`
     parse_result(result)
   end
 
